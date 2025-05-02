@@ -4,53 +4,54 @@ namespace Modules\Produtos\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Produtos\Entities\ModelProdutos;
 
 class ProdutosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Cadastro
+    public function create(Request $req)
     {
-        return view('produtos::index');
+        ModelProdutos::create([
+            "nome" => $req->nome,
+            "descricao" => $req->descricao,
+            "preco" => $req->preco,
+            "quantidade" => $req->quantidade,
+            "codigo_barras" => $req->codigo_barras,
+            "categoria" => $req->categoria
+        ]);
+
+        return response("Producot cadastrado", 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+     // Lista
+     public function read()
+     {
+         return response()->json(ModelProdutos::orderBy('id')->get(), 200);
+     }
+
+    // Update
+    public function update(Request $req)
     {
-        return view('produtos::create');
+        $produto = ModelProdutos::find($req->id);
+
+        $produto->nome = $req->nome;
+        $produto->descricao = $req->descricao;
+        $produto->preco = $req->preco;
+        $produto->quantidade = $req->quantidade;
+        $produto->codigo_barras = $req->codigo_barras;
+        $produto->categoria = $req->categoria;
+
+        $produto->save();
+
+        return response("Produto atualizado!", 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {}
+    // Delete
+    public function delete(Request $req) {
+        $produto = ModelProdutos::find($req->id);
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('produtos::show');
+        $produto->delete();
+
+        return response("Produto deletado com sucesso!", 200);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('produtos::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id) {}
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id) {}
 }
