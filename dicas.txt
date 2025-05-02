@@ -139,12 +139,74 @@ Vai por mim, se não estiver desse jeito vai dar muitos problemas.
 
 Seu modulo vai ser criado.
 
-3° para se criar o arquivo que vai dar origin a tabela do banco:
-- No terminal: php artisan module:make-migration create_<nome_module>_table <nome_modulo>
+3° criando o schema:
+- Pelo fato de estudar usando postgresql é necessário criar o schema, para isso vá até o
+terminal e digite: php artisan module:make-migrate create_<nome_module>_schema_only.php
 
-Agora vá em modules/<nome_modulo>/database/migrations/ vai ter o arquivo aqui.
-Algo tipo "2025_05_02_135631_create_produtos_table.php"
+Dentro precisa deixar assim:
+`
+<?php
 
-4° depois de ter configurado o arquivo da tabela:
-- OBS: necessário ter o banco já criado.
-- Vá até o terminal e digite: php artisan module:migrate <nome_module>
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
+
+class CreateProdutosSchemaOnly extends Migration
+{
+    public function up()
+    {
+        DB::statement('CREATE SCHEMA IF NOT EXISTS produtos');
+    }
+
+    public function down(){}
+}
+
+`
+Caso contrario vai dar erro.
+
+4° Criando as informações da tabela:
+- No terminal: php artisan module:make-migrate create_<nome_module>_table.php
+Dentro algo similar a isso:
+`
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateProdutosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('produtos.produtos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->text('descricao')->nullable();
+            $table->decimal('preco', 10, 2);
+            $table->integer('quantidade');
+            $table->string('codigo_barras')->unique();
+            $table->string('categoria');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        // Schema::dropIfExists('produtos.produtos');
+    }
+}
+
+`
+
+5° subindo as migrations:
+- No terminal: php artisan module:migrate <nome_module>
+Se estiver configurado certo vai subir.

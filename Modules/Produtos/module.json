@@ -1,11 +1,13 @@
 {
     "name": "Produtos",
     "alias": "produtos",
-    "description": "",
+    "description": "Módulo responsável pela gestão de produtos.",
     "keywords": [],
-    "priority": 0,
+    "active": true,
+    "order": 0,
     "providers": [
         "Modules\\Produtos\\Providers\\ProdutosServiceProvider"
     ],
-    "files": []
+    "files": [],
+    "requires": []
 }
