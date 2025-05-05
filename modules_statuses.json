@@ -1,4 +1,5 @@
 {
     "Produtos": true,
-    "Fornecedor": true
+    "Fornecedor": true,
+    "Categoria": true
 }

@@ -210,3 +210,32 @@ class CreateProdutosTable extends Migration
 5° subindo as migrations:
 - No terminal: php artisan module:migrate <nome_module>
 Se estiver configurado certo vai subir.
+
+
+*COMANDOS MAIS USADOS*
+
+# CRIAR MODULO:
+php artisan module:make <nome_modulo>
+
+# CRIAR MIGRATION ou SCHEMA
+- SCHEMA
+php artisan module:make-migration create_<nome_modulo>_schema.only <nome_modulo> (OBS: se sair desse padrão dá probelma)
+
+- MIGRATION
+php artisan module:make-migration create_<nome_module>_table <nome_module> (OBS: se sair desse padrão da problema)
+
+# CRIAR Requests
+- Serve para validações dos campos
+php artisan module:make-request Store<nome_modulo>Request <nome_modulo>
+
+caminho: Modules/<nome_modulo>/Http/Requests/<arquivo_criado>
+
+# CRIAR CONTROLLER
+php artisan module:make-controller <nome_modulo>Controller <nome_modulo>
+
+caminho: Modules/<nome_modulo>/Http/Controllers/<arquivo_criado>
+
+# CRIAR MODEL:
+php artisan module:make-model Model<nome_modulo> <nome_modulo>
+
+Caminho: Modules/<nome_modulo>/Entities/<arquivo_criado>

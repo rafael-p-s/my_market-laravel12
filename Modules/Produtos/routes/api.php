@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 /* Route::apiResource('produtos', ProdutosController::class); */
 
 Route::prefix('v1')->group(function () {
-    Route::get('produtos', [ProdutosController::class, 'read']);
     Route::post('produtos',[ProdutosController::class, 'create']);
+    Route::get('produtos', [ProdutosController::class, 'read']);
     Route::put('produtos/{id}', [ProdutosController::class, 'update']);
     Route::delete('produtos/{id}', [ProdutosController::class, 'delete']);
 });

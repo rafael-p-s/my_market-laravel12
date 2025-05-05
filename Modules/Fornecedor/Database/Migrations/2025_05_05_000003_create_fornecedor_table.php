@@ -13,12 +13,12 @@ class CreateFornecedorTable extends Migration
      */
     public function up()
     {
-        Schema::create('fornecedor.fornecedor', function (Blueprint $table) {
+        Schema::create('estoque.fornecedores', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('cnpj');
-            $table->string('telefone');
-            $table->string('celuar');
+            $table->string('cnpj')->unique();
+            $table->string('telefone')->nullable();
+            $table->string('celular');
             $table->string('cidade');
             $table->string('estado');
 

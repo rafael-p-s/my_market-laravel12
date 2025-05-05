@@ -4,53 +4,86 @@ namespace Modules\Fornecedor\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Fornecedor\Entities\ModelFornecedores;
+use Modules\Fornecedor\Http\Requests\StoreFornecedoresRequest;
+use Modules\Fornecedor\Http\Requests\UpdateFornecedorRequest;
 
 class FornecedorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function create(StoreFornecedoresRequest $req)
     {
-        return view('fornecedor::index');
+        try {
+            $fornecedor = ModelFornecedores::create([
+                "nome" => $req->nome,
+                "cnpj" => $req->cnpj,
+                "telefone" => $req->telefone,
+                "celular" => $req->celular,
+                "cidade" => $req->cidade,
+                "estado" => $req->estado,
+            ]);
+            return response()->json([
+                'message' => "Produto fornecedor cadastrado!",
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Erro ao cadastrar fornecedor.',
+                'details' => $e->getMessage()
+            ], 500);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function read()
     {
-        return view('fornecedor::create');
+        $fornecedor = ModelFornecedores::orderBy('id')->get();
+        if ($fornecedor->isEmpty()) {
+            return response()->json(['message' => "Nenhum fornecedor cadastrado."]);
+        }
+
+        return response()->json($fornecedor, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {}
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
+    public function update(UpdateFornecedorRequest $req)
     {
-        return view('fornecedor::show');
+        try {
+            $fornecedor = ModelFornecedores::find($req->id);
+
+            if (!$fornecedor) {
+                return response()->json([
+                    'error' => "Fornecedor não encontrado."
+                ], 404);
+            }
+
+           $fornecedor->update([
+            'nome'=>$req->nome,
+            'cnpj'=>$req->cnpj,
+            'telefone'=>$req->telefone,
+            'celular'=>$req->celular,
+            'cidade'=>$req->cidade,
+            'estado'=>$req->estado,            
+           ]);
+
+            return response()->json([
+                'message' => 'Fornecedor atualizado.'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Erro ao atualizar fornecedor.',
+                'details' => $e->getMessage()
+            ], 500);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    public function delete(Request $req)
     {
-        return view('fornecedor::edit');
+        $fornecedor = ModelFornecedores::find($req->id);
+
+        if (!$fornecedor) {
+            return response()->json([
+                'error'=>'Fornecedor não encontrado.'
+            ], 404);
+        }
+        $fornecedor->delete();
+
+        return response()->json(['message'=>'Fornecedor deletado com sucesso.']);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id) {}
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id) {}
 }
