@@ -15,7 +15,7 @@ class ProdutosController extends Controller
     public function create(StoreProdutosRequest $req)
     {
         try {
-            $codigo = $req->codigo_barras ?? $this->gerarCodigoBarras();
+            $codigo = $req->codigo_barras ?? $this->gerarCodigoBarras($req);
 
             $produto = ModelProdutos::create([
                 "nome" => $req->nome,
@@ -39,36 +39,49 @@ class ProdutosController extends Controller
         }
     }
 
-    private function gerarCodigoBarras(): string
+    private function gerarCodigoBarras(StoreProdutosRequest $req): string
     {
-        do {
+        /* do {
             $codigo = str_pad(mt_rand(1, 9999999999999), 13, '0', STR_PAD_LEFT);
         } while (ModelProdutos::where('codigo_barras', $codigo)->exists());
-        return $codigo; // EAN-13 fake
+        return $codigo; // EAN-13 fake */
+
+        $categoriaId = (int) $req->categoria_id;
+
+        $prefixos = [
+            1 => '1000',
+            2 => '2000',
+            3 => '3000',
+        ];
+
+        // Caso não tenha em $prefixo, gera um padrão.
+        $prefixo = $prefixos[$categoriaId] ?? '01000';
+
+        do {
+            $sufixo = str_pad(mt_rand(1, 99999999), 8, '0', STR_PAD_LEFT);
+            $codigo = $prefixo . $sufixo;
+        } while (ModelProdutos::where('codigo_barras', $codigo)->exists());
+
+        return $codigo;
     }
 
     // Lista
     public function read()
     {
-        // Está correto, mas pode melhorar
-        // return response()->json(ModelProdutos::orderBy('id')->get(), 200);
+        $produtos = ModelProdutos::with(['categoria', 'fornecedor'])->orderBy('id')->get();
 
-        $produtos = ModelProdutos::orderBy('id')->get();
         if ($produtos->isEmpty()) {
             return response()->json(['message' => 'Nenhum produto cadastrado.'], 204);
         }
-
-        // Retorna as relações já carregadas
-        $produtos = ModelProdutos::with(['categoria', 'fornecedor'])->orderBy('id')->get();
 
         return response()->json($produtos, 200);
     }
 
     // Update
-    public function update(Request $req)
+    public function update(Request $req, $id)
     {
         try {
-            $produto = ModelProdutos::find($req->id);
+            $produto = ModelProdutos::find($id);
 
             if (!$produto) {
                 return response()->json([
@@ -80,8 +93,14 @@ class ProdutosController extends Controller
             $produto->descricao = $req->descricao;
             $produto->preco = $req->preco;
             $produto->quantidade = $req->quantidade;
-            $produto->codigo_barras = $req->codigo_barras;
-            $produto->categoria = $req->categoria;
+
+            if ($req->has('codigo_barras') && !empty($req->codigo_barras)) {
+                $produto->codigo_barras = $req->codigo_barras;
+            }
+
+            $produto->categoria_id = $req->categoria_id;
+            $produto->fornecedor_id = $req->fornecedor_id;
+
 
             $produto->save();
 

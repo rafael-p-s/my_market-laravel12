@@ -13,19 +13,20 @@ class StoreProdutosRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|min:2|max:100',
-            'descricao'=> 'nullable|string|min:2|max:250',
             'preco' => 'required|numeric',
-            'quantidade' => 'required|numeric|min:1',
-            'categoria' => 'required|string|min:2|max:20',
+            'quantidade' => 'required|numeric',
+            'categoria_id' => 'required|numeric',
+            'fornecedor_id' => 'required|numeric'
         ];
     }
 
     public function messages() {
         return [
             'nome.required' => 'O campo :atribute é obrigatório.',
-            'categoria.required' => 'O campo :atribute é obrigatório.',
-            'preco.numeric' => 'O campo :atribute está incorreto, verificar.',
-            'quantidade.numeric' => 'A quantidade deve ser maior que 1.'
+            'preco.required' => 'O campo :atribute está incorreto, verificar.',
+            'quantidade.required' => 'A quantidade deve ser maior que 1.',
+            'categoria_id.required' => 'A :atribute deve ser marcada.',
+            'fornecedor_id.required' => 'O :atribute deve ser marcado.'
         ];
     }
 

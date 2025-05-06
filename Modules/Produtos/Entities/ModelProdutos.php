@@ -3,6 +3,7 @@
 namespace Modules\Produtos\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Categoria\Entities\ModelCategoria;
 use Modules\Fornecedor\Entities\ModelFornecedores;
 
 class ModelProdutos extends Model
@@ -19,13 +20,18 @@ class ModelProdutos extends Model
         'fornecedor_id',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function categoria()
     {
-        return $this->belong(Categoria::class, 'categoria_id');
+        return $this->belongsTo(ModelCategoria::class, 'categoria_id');
     }
 
     public function fornecedor()
     {
-        return $this->belong(ModelFornecedores::class, 'fornecedor_id');
+        return $this->belongsTo(ModelFornecedores::class, 'fornecedor_id');
     }
 }

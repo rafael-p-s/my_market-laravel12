@@ -3,35 +3,39 @@
 namespace Modules\Categoria\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreCategoriaRequest extends FormRequest
 {
-    /**
-     * Get the validation rules that apply to the request.
-     */
     public function rules(): array
     {
         return [
             'nome'=>'required|string|min:2|max:100',
-            'tipo'=>'required|string|min:2|max:100',
+            'tipo'=>'required|string|min:1|max:100',
             'perecivel'=>'required|boolean',
         ];
     }
 
-    public function messages() {
-        $obrigatorio = 'O campo :atribute é obrigatório.';
+    public function messages()
+    {
+        $obrigatorio = 'O campo :attribute é obrigatório.';
         return [
-            'nome.required'=>$obrigatorio,
-            'tipo.required'=>$obrigatorio,
-            'perecivel.required'=>$obrigatorio
+            'nome.required' => $obrigatorio,
+            'tipo.required' => $obrigatorio,
+            'perecivel.required' => $obrigatorio
         ];
     }
 
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'errors' => $validator->errors()
+        ], 422));
     }
 }

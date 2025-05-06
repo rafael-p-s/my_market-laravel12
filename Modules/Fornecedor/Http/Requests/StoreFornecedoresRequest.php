@@ -13,12 +13,11 @@ class StoreFornecedoresRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|min:2|max:100',
-            'cnpj' => 'required|min:14|max:14',
-            'celular' => 'required|numeric|min:10|max:14',
+            'cnpj' => 'required|min:14',
+            'celular' => 'required|numeric|min:9',
             'cidade' => 'required|min:2',
             'estado' => 'required|min:2',
-            'categoria_id' => 'required|exists:estoque.categorias,id',
-            'fornecedor_id' => 'required|exists:estoque.fornecedores,id',
+            
         ];
     }
 
@@ -30,8 +29,7 @@ class StoreFornecedoresRequest extends FormRequest
             'celular.required'=>$obrigatorio,
             'cidade.required'=>$obrigatorio,
             'estado.required'=>$obrigatorio,
-            'categoria_id.required'=>$obrigatorio,
-            'fornecedor_id.required'=>$obrigatorio,
+
         ];
     }
 

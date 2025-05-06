@@ -8,8 +8,8 @@ use Modules\Fornecedor\Http\Controllers\FornecedorController;
 }); */
 
 Route::prefix('v1')->group(function () {
-    Route::post('fornecedor', [FornecedorController::class, 'create']);
-    Route::get('fornecedor', [FornecedorController::class, 'read']);
-    Route::put('fornecedor/{id}', [FornecedorController::class, 'update']);
-    Route::delete('fornecedor/{id}', [FornecedorController::class, 'delete']);
+    Route::post('fornecedores', [FornecedorController::class, 'create']);
+    Route::get('fornecedores', [FornecedorController::class, 'read']);
+    Route::put('fornecedores/{id}', [FornecedorController::class, 'update']);
+    Route::delete('fornecedores/{id}', [FornecedorController::class, 'delete']);
 });

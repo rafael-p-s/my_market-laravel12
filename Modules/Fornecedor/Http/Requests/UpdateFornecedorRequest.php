@@ -10,8 +10,8 @@ class UpdateFornecedorRequest extends FormRequest
     {
         return [
             'nome'=>'required|string|min:2|max:100',
-            'cnpj' => 'required|min:14|max:14',
-            'celular' => 'required|numeric|min:10|max:14',
+            'cnpj' => 'required|min:10',
+            'celular' => 'required|numeric|min:8',
             'cidade' => 'required|min:2',
             'estado' => 'required|min:2',
         ];

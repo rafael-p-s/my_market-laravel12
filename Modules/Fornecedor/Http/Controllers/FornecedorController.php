@@ -21,6 +21,7 @@ class FornecedorController extends Controller
                 "cidade" => $req->cidade,
                 "estado" => $req->estado,
             ]);
+
             return response()->json([
                 'message' => "Produto fornecedor cadastrado!",
             ], 201);
@@ -42,10 +43,10 @@ class FornecedorController extends Controller
         return response()->json($fornecedor, 200);
     }
 
-    public function update(UpdateFornecedorRequest $req)
+    public function update(UpdateFornecedorRequest $req, $id)
     {
         try {
-            $fornecedor = ModelFornecedores::find($req->id);
+            $fornecedor = ModelFornecedores::find($id);
 
             if (!$fornecedor) {
                 return response()->json([
@@ -53,18 +54,19 @@ class FornecedorController extends Controller
                 ], 404);
             }
 
-           $fornecedor->update([
-            'nome'=>$req->nome,
-            'cnpj'=>$req->cnpj,
-            'telefone'=>$req->telefone,
-            'celular'=>$req->celular,
-            'cidade'=>$req->cidade,
-            'estado'=>$req->estado,            
-           ]);
+            $fornecedor->update([
+                'nome' => $req->nome,
+                'cnpj' => $req->cnpj,
+                'telefone' => $req->telefone,
+                'celular' => $req->celular,
+                'cidade' => $req->cidade,
+                'estado' => $req->estado,
+            ]);
 
             return response()->json([
                 'message' => 'Fornecedor atualizado.'
             ], 200);
+
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Erro ao atualizar fornecedor.',
@@ -73,17 +75,17 @@ class FornecedorController extends Controller
         }
     }
 
-    public function delete(Request $req)
+    public function delete(Request $req, $id)
     {
         $fornecedor = ModelFornecedores::find($req->id);
 
         if (!$fornecedor) {
             return response()->json([
-                'error'=>'Fornecedor não encontrado.'
+                'error' => 'Fornecedor não encontrado.'
             ], 404);
         }
         $fornecedor->delete();
 
-        return response()->json(['message'=>'Fornecedor deletado com sucesso.']);
+        return response()->json(['message' => 'Fornecedor deletado com sucesso.']);
     }
 }

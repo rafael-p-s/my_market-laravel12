@@ -21,6 +21,8 @@ class ModelFornecedores extends Model
         'estado',
     ];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function produtos()
     {
         // Isso permite acessar $fornecedor->produtos diretamente e manter seu código limpo e desacoplado.

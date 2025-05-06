@@ -18,6 +18,8 @@ class ModelCategoria extends Model
         'perecivel',
     ];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function produtos()
     {
         return $this->hasMany(\Modules\Produtos\Entities\ModelProdutos::class, 'categoria_id');
