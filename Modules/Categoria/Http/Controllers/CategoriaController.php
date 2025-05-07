@@ -3,6 +3,7 @@
 namespace Modules\Categoria\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Modules\Categoria\Entities\ModelCategoria;
 use Modules\Categoria\Http\Requests\StoreCategoriaRequest;
@@ -75,5 +76,27 @@ class CategoriaController extends Controller
         $categoria->delete();
 
         return response()->json(['message' => 'Categoria deletada com sucesso.'], 200);
+    }
+
+    // Call all products with category's id
+    public function produtos($id)
+    {
+        try {
+            $categoria = ModelCategoria::with('produtos')->find($id);
+
+            if (!$categoria) {
+                return response()->json(['message' => 'Categoria não encontrada.', 404]);
+            }
+
+            return response()->json([
+                'categoria' => $categoria->nome,
+                'produtos' => $categoria->produtos,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Erro ao buscar Categorias',
+                'details' => $e->getMessage()
+            ], 500);
+        }
     }
 }

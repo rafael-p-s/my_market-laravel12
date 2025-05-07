@@ -12,4 +12,7 @@ Route::prefix('v1')->group(function () {
     Route::get('fornecedores', [FornecedorController::class, 'read']);
     Route::put('fornecedores/{id}', [FornecedorController::class, 'update']);
     Route::delete('fornecedores/{id}', [FornecedorController::class, 'delete']);
+
+    // Call all suppliers with products
+    Route::get('fornecedores/{id}/produtos', [FornecedorController::class, 'produtos']);
 });

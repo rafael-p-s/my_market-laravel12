@@ -66,7 +66,6 @@ class FornecedorController extends Controller
             return response()->json([
                 'message' => 'Fornecedor atualizado.'
             ], 200);
-
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Erro ao atualizar fornecedor.',
@@ -87,5 +86,27 @@ class FornecedorController extends Controller
         $fornecedor->delete();
 
         return response()->json(['message' => 'Fornecedor deletado com sucesso.']);
+    }
+
+    // Call all products with supplie's id
+    public function produtos($id)
+    {
+        try {
+            $fornecedor = ModelFornecedores::with('produtos')->find($id);
+
+            if (!$fornecedor) {
+                return response()->json(['message' => 'Fornecedor não encontrado.', 404]);
+            }
+
+            return response()->json([
+                'fornecedores' => $fornecedor->nome,
+                'produtos' => $fornecedor->produtos,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Erro ao buscar Fornecedor',
+                'details' => $e->getMessage()
+            ], 500);
+        }
     }
 }

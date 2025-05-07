@@ -13,4 +13,7 @@ use Modules\Categoria\Http\Controllers\CategoriaController;
     Route::get('categorias', [CategoriaController::class, 'read']);
     Route::put('categorias/{id}', [CategoriaController::class, 'update']);
     Route::delete('categorias/{id}', [CategoriaController::class, 'delete']);
+
+    // Call all products with the category's id
+    Route::get('categorias/{id}/produtos', [CategoriaController::class, 'produtos']);
  });
