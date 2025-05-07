@@ -141,7 +141,7 @@ Seu modulo vai ser criado.
 
 3° criando o schema:
 - Pelo fato de estudar usando postgresql é necessário criar o schema, para isso vá até o
-terminal e digite: php artisan module:make-migrate create_<nome_module>_schema_only.php
+terminal e digite: php artisan module:make-migrate create_<nome_module>_schema_only <nome_module> --plain
 
 Dentro precisa deixar assim:
 `
@@ -163,8 +163,17 @@ class CreateProdutosSchemaOnly extends Migration
 `
 Caso contrario vai dar erro.
 
+** Caso de problema ** use:
+php artisan make:migration create_usuarios_schema_only
+
+e depois:
+
+mv database/migrations/2025_05_07_141223_create_usuarios_schema_only.php Modules/Usuarios/Database/Migrations/
+
+
+
 4° Criando as informações da tabela:
-- No terminal: php artisan module:make-migrate create_<nome_module>_table.php
+- No terminal: php artisan module:make-migrate create_<nome_module>_table <nome_module>
 Dentro algo similar a isso:
 `
 <?php
