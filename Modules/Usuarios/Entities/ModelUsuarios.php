@@ -22,6 +22,7 @@ class ModelUsuarios extends Model
         'cidade',
         'estado',
         'funcionario',
+        'cargo_id',
         'email',
         'password',
         'tipo_cargo',
@@ -36,7 +37,4 @@ class ModelUsuarios extends Model
     {
         return $this->belongsTo(ModelCargo::class, 'cargo_id');
     }
-
-    
-
 }

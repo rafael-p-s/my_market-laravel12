@@ -2,5 +2,6 @@
     "Produtos": true,
     "Fornecedor": true,
     "Categoria": true,
-    "Usuarios": true
+    "Usuarios": true,
+    "Cargo": true
 }

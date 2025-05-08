@@ -1,0 +1,21 @@
+Banco de dados:
+
+usuario = [
+    'nome',
+    'sobrenome',
+    'cpf',
+    'telefone',
+    'celular',
+    'endereco',
+    'cidade',
+    'estado',
+    'funcionario',
+    'email',
+    'password',
+    'tipo_cargo',
+]
+
+Cargos = [
+    'nome',
+    'setor',
+]

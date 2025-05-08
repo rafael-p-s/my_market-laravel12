@@ -3,54 +3,41 @@
 namespace Modules\Usuarios\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Modules\Usuarios\Entities\ModelUsuarios;
+use Modules\Usuarios\Http\Requests\CreateUsuariosRequest;
 
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function create(CreateUsuariosRequest $req)
     {
-        return view('usuarios::index');
+        try {
+
+            $cargoId = $req->funcionario !== true ? 0 : $req->cargo_id;
+
+            $usuarios = ModelUsuarios::create([
+                'nome'=>$req->nome,
+                'sobrenome'=>$req->sobrenome,
+                'cpf'=>$req->cpf,
+                'telefone'=>$req->telefone,
+                'celular'=>$req->celular,
+                'endereco'=>$req->endereco,
+                'cidade'=>$req->cidade,
+                'estado'=>$req->estado,
+                'funcionario'=>$req->funcionario,
+                'cargo_id'=>$cargoId,
+                'email'=>$req->email,
+                'password' => Hash::make($req->password),
+            ]);
+
+            return response()->json(['message'=>'Usuário cadastrado.'], 201);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Erro ao cadastrar usuário.',
+                'details' => $e->getMessage()
+            ], 500);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('usuarios::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {}
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('usuarios::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('usuarios::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id) {}
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id) {}
 }
