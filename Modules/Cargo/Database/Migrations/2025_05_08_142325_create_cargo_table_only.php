@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('cargo', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('nome');
+
+            $table->foreignId('setor_id')->constrained(('usuario.setor'));
             
             $table->timestamps();
         });

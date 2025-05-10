@@ -12,11 +12,15 @@ class ModelCargo extends Model
     protected $table = 'usuario.cargo';
     protected $fillable = [
         'nome',
-        'setor',
+        'setor_id'
     ];
 
     protected $hidden = [
         'created_at',
         'update_at',
     ];
+
+    public function setor () {
+        return $this->belongsTo(ModelSetor::class, 'setor_id');
+    }
 }

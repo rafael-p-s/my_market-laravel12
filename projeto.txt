@@ -1,21 +1,97 @@
 Banco de dados:
 
 usuario = [
-    'nome',
-    'sobrenome',
-    'cpf',
-    'telefone',
-    'celular',
-    'endereco',
-    'cidade',
-    'estado',
-    'funcionario',
-    'email',
-    'password',
-    'tipo_cargo',
+    cliente = [
+        'nome',
+        'sobrenome',
+        'cpf' (unique),
+        'telefone',
+        'celular',
+        'endereco',
+        'cidade',
+        'estado',
+
+        'email',
+        'password',
+
+    ]
+
+    funcionario = [
+        'nome',
+        'sobrenome',
+        'cpf',
+        'telefone',
+        'celular',
+        'endereco',
+        'cidade',
+        'estado',
+
+        'email',
+        'password',
+
+        'cargo_id' (fk),
+    ]
+
+    fornecedor = [
+        'nome'
+        'cnpj' (unique),
+        'telefone',
+        'celular',
+        'cidade',
+        'estado',
+        
+        'email',
+        'password'
+
+        'cargo_id' (fk)
+    ]
+
+    Cargos = [
+        'nome',
+        'setor_id'(fk)
+    ]
+
+    setor = [
+        'nome',
+    ]
+
 ]
 
-Cargos = [
-    'nome',
-    'setor',
+estoque = [
+    produtos = [
+        'usuario.funcionario.funcionario_id' (fk), // is the one who did the registration.
+        'usuario.fornecedor.fornecedor_id' (fk)
+
+        'nome_produto',
+        'quantidade', // Remember to put an alert about less 'produtos.quantidade'
+        'categoria' (frutas, limpeza, massas, etc...),
+        'tipo_peso' (kg, litros, gramas, etc...),
+        'preco' (numeric) ,
+        'perecivel' (boolean),
+
+        'update_date'
+    ]
+
+]
+
+compra = [
+    compras_cliente = [
+        'usuario.cliente.cliente_id' (fk)
+        'estoque.produtos.produtos_id' (fk),
+        'quantidade' // vai depender do tipo, exemplo: banana 1kg
+        'total',
+        'data_compra',
+        'entrega' (boolean),
+    ]
+
+    compras_produtos = [
+        'estoque.produtos.produtos_id' (fk);
+        'quantidade' // da compra , que vai depender do tipo, exemplo: banana 100kg,
+        'valor_total'
+    ]
+
+    faturamente = [
+        'compras_cliente.id' (fk),
+        'compras_produtos,id' (fk)
+    ]
 ]
