@@ -17,6 +17,7 @@ usuario = [
     ]
 
     funcionario = [
+        'funcionario_id' // supervisor/gerente que cadastrou esse funcionario,
         'nome',
         'sobrenome',
         'cpf' (unique),
@@ -29,6 +30,7 @@ usuario = [
         'email',
         'password',
 
+        'setor' (fk),
         'cargo_id' (fk),
     ]
 
@@ -48,7 +50,6 @@ usuario = [
 
     Cargos = [
         'nome',
-        'setor_id'(fk)
     ]
 
     setor = [

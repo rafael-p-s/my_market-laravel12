@@ -12,14 +12,14 @@ class CreateClienteTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('sobrenome');
-            $table->string('cpf');
-            $table->string('telefone');
-            $table->string('celular');
+            $table->string('cpf')->unique();
+            $table->string('telefone')->nullable();
+            $table->string('celular')->unique();
             $table->string('endereco');
             $table->string('cidade');
             $table->string('estado');
 
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
 
             $table->timestamps();
