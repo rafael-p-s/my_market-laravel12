@@ -19,7 +19,7 @@ usuario = [
     funcionario = [
         'nome',
         'sobrenome',
-        'cpf',
+        'cpf' (unique),
         'telefone',
         'celular',
         'endereco',
@@ -62,6 +62,7 @@ estoque = [
         'usuario.funcionario.funcionario_id' (fk), // is the one who did the registration.
         'usuario.fornecedor.fornecedor_id' (fk)
 
+        'codigo_barras' (unique) // It can use like a id
         'nome_produto',
         'quantidade', // Remember to put an alert about less 'produtos.quantidade'
         'categoria' (frutas, limpeza, massas, etc...),
@@ -76,17 +77,26 @@ estoque = [
 
 compra = [
     compras_cliente = [
-        'usuario.cliente.cliente_id' (fk)
+        'nota_fiscal'
+
+    ]
+
+    nota_fiscal = [
+        'usuario.cliente.cpf',
         'estoque.produtos.produtos_id' (fk),
-        'quantidade' // vai depender do tipo, exemplo: banana 1kg
+        'quantidade',
+        'tipo',
         'total',
         'data_compra',
+        'codigo_barras',
         'entrega' (boolean),
     ]
 
     compras_produtos = [
         'estoque.produtos.produtos_id' (fk);
-        'quantidade' // da compra , que vai depender do tipo, exemplo: banana 100kg,
+        'quantidade',
+        'tipo_peso',
+        'valor_unitário' (ou por kg, litro),
         'valor_total'
     ]
 
