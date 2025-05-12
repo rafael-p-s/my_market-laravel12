@@ -86,7 +86,7 @@ class ClienteController extends Controller
 
     public function delete(Request $req, $id)
     {
-        $cliente = ModelCliente::find($req->id);
+        $cliente = ModelCliente::find($id);
 
         if (!$cliente) {
             return response()->json([
