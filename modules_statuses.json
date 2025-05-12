@@ -3,5 +3,6 @@
     "Fornecedor": true,
     "Categoria": true,
     "Usuarios": true,
-    "Cargo": true
+    "Cargo": true,
+    "Cliente": true
 }
