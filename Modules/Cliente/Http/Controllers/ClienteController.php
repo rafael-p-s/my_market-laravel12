@@ -72,7 +72,7 @@ class ClienteController extends Controller
                 "cidade" => $req->cidade,
                 "estado" => $req->estado,
 
-                "email" => $req->email,
+                // "email" => $req->email, // não vai ser permitido alterar email.
                 "password" => Hash::make($req->password)
             ]);
 

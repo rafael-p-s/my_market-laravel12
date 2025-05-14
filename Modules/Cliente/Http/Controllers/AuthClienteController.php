@@ -17,10 +17,12 @@ class AuthClienteController extends Controller
             return response()->json(['error' => 'Credenciais inválidas'], 401);
         }
 
-        $cliente = array_intersect_key(
+        /* $cliente = array_intersect_key(
             (array) auth('cliente')->user(),
-            array_flip(['id', 'nome', 'sobrenome', 'email'])
-        );
+            array_flip(['id', 'nome', 'sobrenome', 'email', 'cpf'])
+        ); */
+
+        $cliente = auth('cliente')->user();
 
         return response()->json([
             'token' => $token,
