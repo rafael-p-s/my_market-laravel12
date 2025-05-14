@@ -24,5 +24,5 @@ Route::middleware('auth:cliente')->group(function () {
     Route::post('/cliente/refresh', [AuthClienteController::class, 'refresh']);
     Route::get('/cliente', [ClienteController::class, 'read']);
     Route::put('/cliente/{id}', [ClienteController::class, 'update']);
-    Route::delete('/cliente/{id}', [ClienteController::class, 'delete']);
+    // Route::delete('/cliente/{id}', [ClienteController::class, 'delete']); // não vai se deletar usuário.
 });

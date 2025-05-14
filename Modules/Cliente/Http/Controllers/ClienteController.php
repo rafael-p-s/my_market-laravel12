@@ -12,6 +12,7 @@ class ClienteController extends Controller
 {
     public function create(CreateRequestCliente $req)
     {
+        // dd('chegou aqui antes de tentar criar');
         try {
             $cliente = ModelCliente::create([
                 "nome" => $req->nome,
@@ -20,6 +21,8 @@ class ClienteController extends Controller
                 "telefone" => $req->telefone,
                 "celular" => $req->celular,
                 "endereco" => $req->endereco,
+                "numero_casa" => $req->numero_casa,
+                "complemento" => $req->complemento,
                 "cidade" => $req->cidade,
                 "estado" => $req->estado,
 

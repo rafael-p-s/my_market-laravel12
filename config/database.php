@@ -110,10 +110,9 @@ return [
             'prefix_indexes' => true,
             'sslmode' => 'prefer',
 
-            // 👇 Correto: Aqui você define qual schema o PostgreSQL vai usar por padrão
             'options' => extension_loaded('pdo_pgsql') ? [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                'search_path' => 'estoque,public', // use 'estoque' ou outro schema que você criou
+                'search_path' => 'public', // Se "usuario" é seu schema principal, use isso
             ] : [],
         ],
 

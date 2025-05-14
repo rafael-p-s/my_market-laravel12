@@ -8,7 +8,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class ModelCliente extends Authenticatable implements JWTSubject
 {
     protected $connection = 'pgsql';
-    protected $table = 'usuario.cliente';
+    protected $table = 'cliente';
 
     protected $fillable = [
         'nome',
@@ -17,6 +17,8 @@ class ModelCliente extends Authenticatable implements JWTSubject
         'telefone',
         'celular',
         'endereco',
+        'numero_casa',
+        'complemento',
         'cidade',
         'estado',
         'email',
