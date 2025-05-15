@@ -13,6 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'block_if_authenticated' => \Modules\Cliente\Http\Middleware\BlockIfAuthenticatedCliente::class,
+            'block_if_authenticated_cargo' => \Modules\Cargo\Http\Middleware\BlockIfAuthenticatedCargo::class,
+            'block_if_authenticated_setor' => \Modules\Setor\Http\Middleware\BlockIfAuthenticatedSetor::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

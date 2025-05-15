@@ -77,7 +77,7 @@ class ClienteController extends Controller
             ]);
 
             return response()->json([
-                'message' => 'Cliente atualizdo',
+                'message' => 'Cliente atualizado',
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
