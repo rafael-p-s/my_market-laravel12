@@ -1,0 +1,11 @@
+{
+    "name": "Funcionario",
+    "alias": "funcionario",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Funcionario\\Providers\\FuncionarioServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/funcionario",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Funcionario\\": "app/",
+            "Modules\\Funcionario\\Database\\Factories\\": "database/factories/",
+            "Modules\\Funcionario\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Funcionario\\Tests\\": "tests/"
+        }
+    }
+}
