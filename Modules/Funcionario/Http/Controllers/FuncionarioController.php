@@ -4,53 +4,97 @@ namespace Modules\Funcionario\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Modules\Funcionario\Entities\ModelFuncionario;
+use Modules\Funcionario\Http\Requests\CreateRequestFuncionario;
 
 class FuncionarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function create(CreateRequestFuncionario $req)
     {
-        return view('funcionario::index');
+        try {
+            $funcionario = ModelFuncionario::create([
+                "nome" => $req->nome,
+                "sobrenome" => $req->sobrenome,
+                "cpf" => $req->cpf,
+                "telefone" => $req->telefone,
+                "celular" => $req->celular,
+                "endereco" => $req->endereco,
+                "numero_casa" => $req->numero_casa,
+                "complemento" => $req->complemento,
+                "cidade" => $req->cidade,
+                "estado" => $req->estado,
+
+                "email" => $req->email,
+                "password" => Hash::make($req->password),
+
+                'cargo_id' => $req->cargo_id,
+                'setor_id' => $req->setor_id,
+            ]);
+
+            return response()->json([
+                'message' => 'Funcionario cadastrado com sucesso!',
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Erro ao criar o funcionario.',
+                'details' => $e->getMessage()
+            ], 500);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function read()
     {
-        return view('funcionario::create');
+        $funcionario = ModelFuncionario::orderBy('id')->get();
+        if ($funcionario->isEmpty()) {
+            return response()->json(['message' => "Nenhum funcionario encontrado."]);
+        }
+
+        return response()->json($funcionario, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request) {}
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
+    public function findFuncionario($cpf)
     {
-        return view('funcionario::show');
+        $funcionario = ModelFuncionario::where('cpf', $cpf)->first();
+
+        if (!$funcionario) {
+            return response()->json(['message' => '{$cpf} não encontrado.'], 404);
+        }
+
+        return response()->json($funcionario, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    public function update(Request $req, $id)
     {
-        return view('funcionario::edit');
+        try {
+            $funcionario = ModelFuncionario::find($id);
+
+            if (!$funcionario) {
+                return response()->json([
+                    'error' => "Funcionario não encontrado."
+                ], 404);
+            }
+
+            $funcionario->update(
+                [
+                    "nome" => $req->nome,
+                    "sobrenome" => $req->sobrenome,
+                    // "cpf" => $req->cpf,
+                    "telefone" => $req->telefone,
+                    "celular" => $req->celular,
+                    "endereco" => $req->endereco,
+                    "cidade" => $req->cidade,
+                    "estado" => $req->estado,
+
+                    "email" => $req->email, // não vai ser permitido alterar email.
+                    "password" => Hash::make($req->password)
+                ]
+            );
+        } catch (\Exception $e) {
+            return response()->json([
+                'erro' => 'Não foi possível atualizar cargo.',
+                'details' => $e->getMessage()
+            ], 500);
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id) {}
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id) {}
 }
