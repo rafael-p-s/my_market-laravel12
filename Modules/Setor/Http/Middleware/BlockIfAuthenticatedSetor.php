@@ -19,7 +19,7 @@ class BlockIfAuthenticatedSetor
                 return response()->json(['error'=>'Você não está autenticado.'], 401);
             }
 
-            $cargoId = [1,2]; 
+            $cargoId = [1, 2, 3]; // 1 ADM , 2 Gerente Geral, 3 Gerente do setor
             if (!in_array($user->cargo_id, $cargoId)) {
                 return response()->json(['error'=>'Acesso não atutorizado.'], 403);
             }
