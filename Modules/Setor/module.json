@@ -1,0 +1,11 @@
+{
+    "name": "Setor",
+    "alias": "setor",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Setor\\Providers\\SetorServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/setor",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Setor\\": "app/",
+            "Modules\\Setor\\Database\\Factories\\": "database/factories/",
+            "Modules\\Setor\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Setor\\Tests\\": "tests/"
+        }
+    }
+}

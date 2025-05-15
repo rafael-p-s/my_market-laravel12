@@ -4,5 +4,6 @@
     "Categoria": true,
     "Usuarios": true,
     "Cargo": true,
-    "Cliente": true
+    "Cliente": true,
+    "Setor": true
 }
