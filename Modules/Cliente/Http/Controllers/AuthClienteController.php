@@ -14,13 +14,13 @@ class AuthClienteController extends Controller
         $credentials = $req->only('email', 'password');
 
         if (! $token = auth('cliente')->attempt($credentials)) {
-            return response()->json(['error' => 'Credenciais inválidas'], 401);
+            return response()->json(['error' => 'Credenciais inválidas para cliente.'], 401);
         }
 
-        /* $cliente = array_intersect_key(
-            (array) auth('cliente')->user(),
-            array_flip(['id', 'nome', 'sobrenome', 'email', 'cpf'])
-        ); */
+        // $cliente = array_intersect_key(
+        //     (array) auth('cliente')->user(),
+        //     array_flip(['id', 'nome', 'sobrenome', 'email', 'cpf'])
+        // );
 
         $cliente = auth('cliente')->user();
 

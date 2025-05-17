@@ -79,17 +79,24 @@ class FuncionarioController extends Controller
                 [
                     "nome" => $req->nome,
                     "sobrenome" => $req->sobrenome,
-                    // "cpf" => $req->cpf,
+                    "cpf" => $req->cpf,
                     "telefone" => $req->telefone,
                     "celular" => $req->celular,
                     "endereco" => $req->endereco,
                     "cidade" => $req->cidade,
                     "estado" => $req->estado,
 
-                    "email" => $req->email, // não vai ser permitido alterar email.
-                    "password" => Hash::make($req->password)
+                    "email" => $req->email,
+                    "password" => Hash::make($req->password),
+
+                    "cargo_id" => $req->cargo_id,
+                    "setor_id" => $req->setor_id,
                 ]
             );
+
+            return response()->json([
+                'message' => 'Funcionario atualizado',
+            ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'erro' => 'Não foi possível atualizar cargo.',

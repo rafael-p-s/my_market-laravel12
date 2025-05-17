@@ -6,5 +6,6 @@
     "Cargo": true,
     "Cliente": true,
     "Setor": true,
-    "Funcionario": true
+    "Funcionario": true,
+    "AuthController": true
 }

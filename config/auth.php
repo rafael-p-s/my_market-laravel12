@@ -19,7 +19,20 @@ return [
         'cliente' => [
             'driver' => 'jwt',
             'provider' => 'cliente',
-        ]
+        ],
+        'funcionario' => [
+            'driver' => 'jwt',
+            'provider' => 'funcionario',
+        ],
+        'cargo' => [
+            'driver' => 'jwt',
+            'provider' => 'funcionario',
+        ],
+        'setor' => [
+            'driver' => 'jwt',
+            'provider' => 'funcionario',
+        ],
+
     ],
 
     'providers' => [
@@ -31,8 +44,19 @@ return [
         'cliente' => [
             'driver' => 'eloquent',
             'model' => Modules\Cliente\Entities\ModelCliente::class,
-        ]
-
+        ],
+        'funcionario' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Funcionario\Entities\ModelFuncionario::class,
+        ],
+        'cargo' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Cargo\Entities\ModelCargo::class,
+        ],
+        'setor' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Setor\Entities\ModelSetor::class,
+        ],
     ],
 
 

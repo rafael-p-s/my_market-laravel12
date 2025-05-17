@@ -14,7 +14,7 @@ use Modules\Cliente\Http\Controllers\ClienteController;
 // ROTAS PÚBLICAS (usuário não pode estar autenticado)
 Route::middleware('block_if_authenticated')->group(function () {
     Route::post('/cliente/cadastro', [ClienteController::class, 'create']);
-    Route::post('/cliente/login', [AuthClienteController::class, 'login']);
+    // Route::post('/cliente/login', [AuthClienteController::class, 'login']);
 });
 
 // ROTAS PRIVADAS (usuário autenticado com JWT de cliente)
@@ -22,7 +22,10 @@ Route::middleware('auth:cliente')->group(function () {
     Route::get('/cliente/me', [AuthClienteController::class, 'me']);
     Route::post('/cliente/logout', [AuthClienteController::class, 'logout']);
     Route::post('/cliente/refresh', [AuthClienteController::class, 'refresh']);
-    Route::get('/cliente/read', [ClienteController::class, 'read']);
     Route::put('/cliente/{id}', [ClienteController::class, 'update']);
     // Route::delete('/cliente/{id}', [ClienteController::class, 'delete']); // não vai se deletar usuário.
+});
+
+Route::middleware('auth:funcionario')->group(function () {
+    Route::get('/cliente/read', [ClienteController::class, 'read']);
 });

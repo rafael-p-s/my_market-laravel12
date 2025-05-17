@@ -60,6 +60,10 @@ class SetorController extends Controller
             $setor->update([
                 'nome_setor' => $req->nome_setor,
             ]);
+
+            return response()->json([
+                'message' => 'Setor atualizado com sucesso!'
+            ], 200);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Não foi possível atualizar setor.',

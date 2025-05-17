@@ -9,10 +9,10 @@ class AuthFuncionarioController extends Controller
 {
     public function login(Request $req)
     {
-        $credentialsFunc = $req->only('cpf', 'password');
+        $credentials = $req->only('cpf', 'password');
 
-        if (!$token = auth('funcionario')->attempt($credentialsFunc)) {
-            return response()->json(['error' => 'Credenciais inválidas.'], 401);
+        if (!$token = auth('funcionario')->attempt($credentials)) {
+            return response()->json(['error' => 'Credenciais inválidas para funcionario.'], 401);
         }
 
         $funcionario = auth('funcionario')->user();
