@@ -10,7 +10,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class ModelFuncionario extends Authenticatable implements JWTSubject
 {
     protected $connection = 'pgsql';
-    protected $table = 'cliente';
+    protected $table = 'funcionario';
 
     protected $fillable = [
         'nome',

@@ -7,5 +7,5 @@ Route::middleware(['auth:setor', 'block_if_authenticated_setor'])->group(functio
     Route::post('/setor/cadastro', [SetorController::class, 'create']);
     Route::get('/setor/read', [SetorController::class, 'read']);
     Route::get('/setor/buscarSetor/{nome_setor}', [SetorController::class, 'findSetor']);
-    Route::put('/seto/{id}', [SetorController::class, 'update']);
+    Route::put('/setor/{id}', [SetorController::class, 'update']);
 });

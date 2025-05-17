@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/authcontroller",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\AuthController\\": "app/",
+            "Modules\\AuthController\\Database\\Factories\\": "database/factories/",
+            "Modules\\AuthController\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\AuthController\\Tests\\": "tests/"
+        }
+    }
+}

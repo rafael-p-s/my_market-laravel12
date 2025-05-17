@@ -1,0 +1,11 @@
+{
+    "name": "AuthController",
+    "alias": "authcontroller",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AuthController\\Providers\\AuthControllerServiceProvider"
+    ],
+    "files": []
+}
