@@ -43,6 +43,7 @@ class ProdutoController extends Controller
         $prefixos = [
             'frutas' => '1000',
             'limpeza' => '2000',
+            'padaria' => '10000',
         ];
         
 
@@ -57,10 +58,8 @@ class ProdutoController extends Controller
 
     public function gerarCodigoBarras(Request $req): string
     {
-        // Supondo que você envie o id da categoria no request
         $categoriaId = (int) $req->categoria_id;
 
-        // Prefixo dinâmico baseado no id da categoria
         $prefixo = $categoriaId * 1000;
 
         do {
