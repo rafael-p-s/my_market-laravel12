@@ -58,7 +58,7 @@ class FuncionarioController extends Controller
         $funcionario = ModelFuncionario::where('cpf', $cpf)->first();
 
         if (!$funcionario) {
-            return response()->json(['message' => '{$cpf} não encontrado.'], 404);
+            return response()->json(['message' => "$cpf não encontrado."], 404);
         }
 
         return response()->json($funcionario, 200);
@@ -99,7 +99,7 @@ class FuncionarioController extends Controller
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
-                'erro' => 'Não foi possível atualizar cargo.',
+                'erro' => 'Não foi possível atualizar funcionario.',
                 'details' => $e->getMessage()
             ], 500);
         }
