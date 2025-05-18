@@ -24,6 +24,10 @@ return [
             'driver' => 'jwt',
             'provider' => 'funcionario',
         ],
+        'fornecedor' => [
+            'driver' => 'jwt',
+            'provider' => 'fornecedor',
+        ],
         'cargo' => [
             'driver' => 'jwt',
             'provider' => 'funcionario',
@@ -48,6 +52,10 @@ return [
         'funcionario' => [
             'driver' => 'eloquent',
             'model' => Modules\Funcionario\Entities\ModelFuncionario::class,
+        ],
+        'fornecedor' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Fornecedor\Entities\ModelFornecedor::class,
         ],
         'cargo' => [
             'driver' => 'eloquent',
