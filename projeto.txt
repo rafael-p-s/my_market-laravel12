@@ -66,8 +66,8 @@ estoque = [
         'codigo_barras' (unique) // It can use like a id
         'nome_produto',
         'quantidade', // Remember to put an alert about less 'produtos.quantidade'
-        'categoria' (frutas, limpeza, massas, etc...),
         'tipo_peso' (kg, litros, gramas, etc...),
+        'categoria_id',
         'preco' (numeric) ,
         'perecivel' (boolean),
 
@@ -75,7 +75,9 @@ estoque = [
     ]
 
 ]
-
+categoria = [
+    'nome'(string),
+]
 compra = [
     compras_cliente = [
         'nota_fiscal'

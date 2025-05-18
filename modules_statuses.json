@@ -7,5 +7,6 @@
     "Cliente": true,
     "Setor": true,
     "Funcionario": true,
-    "AuthController": true
+    "AuthController": true,
+    "Produto": true
 }

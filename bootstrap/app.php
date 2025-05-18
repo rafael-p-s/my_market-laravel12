@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'block_if_authenticated_setor' => \Modules\Setor\Http\Middleware\BlockIfAuthenticatedSetor::class,
             'block_if_authenticated_functionario' => \Modules\Funcionario\Http\Middleware\BlockIfAuthenticatedFuncionario::class,
             'block_if_authenticated_fornecedor' => \Modules\Fornecedor\Http\Middleware\BlockIfAuthenticatedFornecedor::class,
+            'block_if_authenticated_produto' => \Modules\Produto\Http\Middleware\BlockIfAuthenticatedProduto::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
