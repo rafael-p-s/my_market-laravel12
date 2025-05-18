@@ -85,7 +85,7 @@ compra = [
     ]
 
     nota_fiscal = [
-        'usuario.cliente.cpf',
+        'usuario.cliente_id',
         'estoque.produtos.produtos_id' (fk),
         'quantidade',
         'tipo',
@@ -108,3 +108,16 @@ compra = [
         'compras_produtos,id' (fk)
     ]
 ]
+
+/**
+                 * Lista de cargos disponíveis no sistema:
+                 *
+                 * @Cargos
+                 * 1 = Administrador
+                 * 2 = Gerente Geral
+                 * 3 = Gerente do Setor
+                 * 4 = Fornecedor
+                 * 5 = Supervisor Geral
+                 * 6 = Supervisor do Setor
+                 * 7 = Funcionário Estoque
+             */

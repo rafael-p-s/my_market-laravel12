@@ -39,7 +39,11 @@ return [
         'produto' => [
             'driver' => 'jwt',
             'provider' => 'funcionario',
-        ]
+        ],
+        'categoria' => [
+            'driver' => 'jwt',
+            'provider' => 'funcionario',
+        ],
 
     ],
 
@@ -72,7 +76,11 @@ return [
         'produto' => [
             'driver' => 'eloquent',
             'model' => Modules\Produto\Entities\ModelProduto::class,
-        ]
+        ],
+        'categoria' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Categoria\Entities\ModelCategoria::class,
+        ],
     ],
 
 
