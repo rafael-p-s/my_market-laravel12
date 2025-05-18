@@ -36,6 +36,10 @@ return [
             'driver' => 'jwt',
             'provider' => 'funcionario',
         ],
+        'produto' => [
+            'driver' => 'jwt',
+            'provider' => 'funcionario',
+        ]
 
     ],
 
@@ -65,6 +69,10 @@ return [
             'driver' => 'eloquent',
             'model' => Modules\Setor\Entities\ModelSetor::class,
         ],
+        'produto' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Produto\Entities\ModelProduto::class,
+        ]
     ],
 
 
