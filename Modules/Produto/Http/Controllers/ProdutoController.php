@@ -72,7 +72,7 @@ class ProdutoController extends Controller
 
     public function read()
     {
-        $produto = ModelProduto::oderBy('id')->get();
+        $produto = ModelProduto::orderBy('id')->get();
         if ($produto->isEmpty()) {
             return response()->json(['message' => "Nenhum produto encontrado."], 404);
         }
